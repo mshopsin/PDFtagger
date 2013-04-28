@@ -11,7 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428023219) do
+ActiveRecord::Schema.define(:version => 20130428030259) do
+
+  create_table "documents", :force => true do |t|
+    t.string   "title"
+    t.text     "preview"
+    t.string   "location"
+    t.integer  "owner_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "documents", ["owner_id"], :name => "index_documents_on_owner_id"
+
+  create_table "posts", :force => true do |t|
+    t.text     "response"
+    t.integer  "author_id"
+    t.integer  "reply_to_id"
+    t.integer  "tag_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "posts", ["author_id"], :name => "index_posts_on_author_id"
+  add_index "posts", ["reply_to_id"], :name => "index_posts_on_reply_to_id"
+  add_index "posts", ["tag_id"], :name => "index_posts_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.text     "task"
+    t.integer  "x_1"
+    t.integer  "x_2"
+    t.integer  "y_1"
+    t.integer  "y_2"
+    t.integer  "document_id"
+    t.integer  "creator_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "tags", ["creator_id"], :name => "index_tags_on_creator_id"
+  add_index "tags", ["document_id"], :name => "index_tags_on_document_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
