@@ -1,0 +1,87 @@
+<script type="text/javascript">
+$(function(){ 
+	
+	
+	
+	var $pdfInput = $("#pdf-location");
+	var $response = $('#response');
+	var formData = false;
+
+	var docs = <%= Document.all.to_json.html_safe %>; 
+	
+	window.PT.initialize($('#doc-list'), $('#pdf-reader'), $('#tag-listing'), docs);
+
+	
+	function showUploadedItem(title) {
+		var $list = $("pdf-list");
+		var $li = $('<li></li>');
+		$li.append(title);
+		$list.append($li);
+	}
+	
+	$pdfInput.change(function(evt){
+	
+		console.log($pdfInput);
+		var file = $pdfInput[0].files[0];
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = shipOff;
+		
+	});
+	
+	function shipOff(event) {
+	    var result = event.target.result;
+	    var fileName = $pdfInput[0].files[0].name; //Should be 'picture.jpg'
+		console.log(result);
+		$.post(
+			'/documents.json',
+			 {
+				 document:  {title: fileName,
+					      pdf_data: result }
+	});
+	}
+	
+	
+}); 
+</script>
+<div class="row">
+  <div class="span4">
+	  <h1>Doc List</h1><br>
+  	  <!-- <% Document.all.each do |doc| %>
+	  
+	  <%= doc.title %><br>
+	  
+  	  <% end %> -->
+		  
+		  <div id='doc-list'></div>
+  	
+	  <br>
+	  <div class=container>
+
+			<form action="/documents" method="post">
+				
+				<label>
+					Upload File
+				<input type="file" name="document[pdf]" id="pdf-location" value="upload pdf" target="upload_frame" multiple/>
+				</label>
+				<br>
+				<button id="start-upload">Upload</button>
+			</form>
+			<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+			<div id="response"></div>
+			<ul id="pdf-list">
+			</ul>
+			
+		</div>
+  </div>
+  <div class="span10">
+	  <h1>Pdf Reader</h1>
+	  <div id="pdf-reader"></div>
+  
+  </div>
+  <div class="span4">
+	   <h1>Tags</h1>
+	   <div id="tag-listing"></div>
+  </div>
+</div>
+

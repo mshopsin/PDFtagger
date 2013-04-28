@@ -1,0 +1,7 @@
+<ul>
+<% documents.each(function(document){ %>
+  <li>
+    <a href='#/documents/<%= document.id %>'><%= document.escape('title') %></a>
+  </li>
+<% }) %>
+</ul>

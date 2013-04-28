@@ -6,7 +6,8 @@ class Document < ActiveRecord::Base
   has_many :posts, through: :tags
   has_attached_file :pdf
   
-  #validates :title, presence: true
+  validates :title, presence: true
+  validates :title, uniqueness: true
   #validates :owner, presence: true
   
   
