@@ -11,15 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428030259) do
+ActiveRecord::Schema.define(:version => 20130428181914) do
 
   create_table "documents", :force => true do |t|
     t.string   "title"
     t.text     "preview"
     t.string   "location"
     t.integer  "owner_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.binary   "pdf_data"
   end
 
   add_index "documents", ["owner_id"], :name => "index_documents_on_owner_id"
