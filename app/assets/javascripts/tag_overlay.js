@@ -2,8 +2,13 @@ PT.Overlay.Tag = (function() {
  
   var my = {};
   var count = 0;
-  var $bodyTag = $('#pdf-reader');
-  my.setupOverlay = function(){
+  
+  my.assignModel = function(model) {
+	  this.model = model;
+  }
+  
+  my.setupOverlay = function($reader,$start){
+	  	  var that = this;
 		  var dialogContentText = $("<p>Please Enter the task you want completed</p>"); 
 		  var $selection = $('<div id="Selection" class="ui-widget-content" ></div>');
 		  var $buttonRow = $('<div class="button-row"></div>');
@@ -42,19 +47,46 @@ PT.Overlay.Tag = (function() {
 		  $commentButton.button({ icons: {primary: "ui-icon-comment" } });
 		  $buttonRow.append($commentButton);
 		  $commentButton.click(function(){
+		  var $tagAnchor = $(".tag-anchor");
+		  var $diag = $('<div class="anchorTag"></div>');
+		  $tagAnchor.append($diag);
+		  $taskInputEl = $('<textarea class="inputTaskTextArea" type="text" name="task[text]" >' + $selection.model.get("task") + '</textarea>');
+	      $diag.dialog({modal:true, width: 800,height:400, title: "Enter the Associated Task For this Section",
+		   buttons: [ { text: "Ok", click: function() { 
 			  
-	     var $diag = $(".nav-bar").dialog({modal:true, width: 800,height:400, title: "Enter the Associated Task For this Section",
-		  buttons: [ { text: "Ok", click: function() { $( this ).dialog( "close" ); } } ] });
-	  	 var $taskInputEl = $('<textarea class="inputTaskTextArea" type="text" name="task[text]" ></textarea>');
+			  var tag = $selection.model;
+			  var taskText = $taskInputEl.val();
+			  tag.set({ task : taskText });
+			  console.log(taskText);
+			  console.log($selection.model.get("task"));
+			  tag.save();
+			  
+			  $( this ).dialog( "close" );
+		   } } ] });
+		   console.log($selection.model.task);
+	  	 
 		 	//  $taskInputEl.resizable( 'disable' );
-		  	if($diag.find('.inputTaskTextArea').size() == 0 ){
+		  //	if($diag.find('.inputTaskTextArea').size() == 0 ){
 	  		 	$diag.append($taskInputEl);
-	   		}
+				//}
 		  });
-		  $bodyTag.append($selection);
-	      $selection.draggable();
+	      $selection.draggable({containment: "window"});
 	  	  $selection.resizable();
 		  
+		  // var options = {
+  // 			  "my": "top left",
+  // 		  	  "at": "top left",
+  // 			  "of": '.reader-container'
+  // 		  };
+  // 		  $selection.position(options);
+  // 	
+	
+  
+  		  $selection.css({top: '10px',
+	  					  left: '10px'});
+		  $start.append($selection);
+	     
+		 
 		  return $selection;
 	  }
 	  //todo return tag

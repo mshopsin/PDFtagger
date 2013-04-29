@@ -5,9 +5,19 @@ class TagsController < ApplicationController
   
   def create
     tag = Tag.new(params[:tag])
-    tag.owner_id = current_user.id
+    tag.creator_id = current_user.id
     if tag.save!
       render :json => tag.to_json
+    else
+      render :json => tag.errors, status: 422
+    end
+  end
+  
+  def update
+    puts params
+    tag = Tag.find(params[:id])
+    if tag.update_attributes(params[:tag])
+      render :json => {status: "ok!"}
     else
       render :json => tag.errors, status: 422
     end
