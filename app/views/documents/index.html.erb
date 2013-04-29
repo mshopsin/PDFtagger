@@ -44,7 +44,9 @@ $(function(){
 	
 }); 
 </script>
-<div class="row">
+
+
+<div class="row" id="main-content">
   <div class="span4">
 	  <h1>Doc List</h1><br>
   	  <!-- <% Document.all.each do |doc| %>
@@ -60,10 +62,9 @@ $(function(){
 
 			<form action="/documents" method="post">
 				
-				<label>
-					Upload File
+				<label for="pdf-location">Upload File</label>
 				<input type="file" name="document[pdf]" id="pdf-location" value="upload pdf" target="upload_frame" multiple/>
-				</label>
+				
 				<br>
 				<button id="start-upload">Upload</button>
 			</form>
@@ -74,12 +75,12 @@ $(function(){
 			
 		</div>
   </div>
-  <div class="span10">
+  <div class="span12 offset-2">
 	  <h1>Pdf Reader</h1>
-	  <div id="pdf-reader"></div>
+	  <div id="pdf-reader" class="well"></div>
   
   </div>
-  <div class="span4">
+  <div class="span2 offset2">
 	   <h1>Tags</h1>
 	   <div id="tag-listing"></div>
   </div>

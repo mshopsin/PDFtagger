@@ -61,6 +61,12 @@ button {
 
 }
 
+#pdf-reader {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+
 .dropDownItem:hover {
   color:white;
   background:blue;
@@ -84,3 +90,10 @@ button {
   color:white;
   background:blue;
 };
+
+
+#main-content {
+	padding-top: 40px;
+	padding-left: 10px;
+}
+

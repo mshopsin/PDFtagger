@@ -8,14 +8,18 @@
 </head>
 <body>
 	
-	<div class="navbar">
-	<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-	</div>
-	
 
-		
-		
-		
+	<div class="navbar navbar-fixed-top navbar-inverse">
+	  <div class="navbar-inner">
+	    <a class="brand" href="#">PDFtagger</a>
+	    <ul class="nav">
+	      <li class="active"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+	      <li><a href="#">Add Selection</a></li>
+	    </ul>
+	  </div>
+	</div>
+
+
 <%= yield %>
 
 

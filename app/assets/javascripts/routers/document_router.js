@@ -31,8 +31,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		var readerView = new PT.Views.DocumentReaderView({
 			model: document
 		});
-		console.log(readerView);
-		console.log(readerView.render());
+
 		this.$reader.html(readerView.render().$el);
 		//Todo Show Tags
 		
