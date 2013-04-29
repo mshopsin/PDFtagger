@@ -41,10 +41,22 @@ $(function(){
 	});
 	}
 	
+	// $('#set-selection').click(function() {
+	// 	window.Selection.Status = true;
+	// 	
+	// });
 	
 }); 
 </script>
-
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <a class="brand" href="#">PDFtagger</a>
+    <ul class="nav">
+      <li class="active"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+      <li><a href="#" id="set-selection">Add Selection</a></li>
+    </ul>
+  </div>
+</div>
 
 <div class="row" id="main-content">
   <div class="span4">

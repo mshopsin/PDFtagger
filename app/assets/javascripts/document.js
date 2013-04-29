@@ -5,6 +5,7 @@ window.PT = {
 	Collections: {},
 	Widgets: {},
 	Store: {},
+	Overlay: {},
 	
 	initialize: function($docs, $reader, $tags, docsJSON) {
 		var documents = new PT.Collections.Documents(docsJSON, {parse: true});
