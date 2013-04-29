@@ -6,7 +6,14 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var rendered = JST["documents/reader"]({
 			document: this.model
 		});
+		var $frameView = $('<iframe id="frame-view" type="application/pdf" width="100%" height="5000px" ></iframe>')
+		this.model.getBlobURL( function(blob){
+			console.log(blob);
+			$frameView.attr('src',blob);
+		});
+		
 		this.$el.html(rendered);
+		this.$el.find(".reader-container").append($frameView);
 		return this;
 	},
 	
@@ -29,7 +36,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 	},
 	
 	makeTagParams: function(){
-		var $start  = $('#tag-listing');
+		var $start  = $('#frame-view');
 		var $reader = $('.reader-container');
 		var tagFactory = PT.Overlay.Tag;
 		var tagObj = tagFactory.setupOverlay($reader,$start);

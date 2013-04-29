@@ -13,8 +13,6 @@ PT.Overlay.Tag = (function() {
 		  var $selection = $('<div id="Selection" class="ui-widget-content" ></div>');
 		  var $buttonRow = $('<div class="button-row"></div>');
 		  $selection.append($buttonRow);
-		  $selection.draggable();
-		  $selection.resizable();
 		  
 		  if(typeof optionsModel != 'undefined') {
 			  $selection.model = optionsModel;

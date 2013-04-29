@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       
       format.html { render :index }
-      format.json { render :json => @documents.to_json(:include => [:tags]) }
+      format.json { render :json => @documents.to_json(:include => [:tags], only: [:title, :id] ) }
     end
   end
   
@@ -21,10 +21,11 @@ class DocumentsController < ApplicationController
   end
   
   def show
-    @document = Document.find_by_title( params[:title] )
-    respond_to do |format|
-      format.json { render json: @document }
-    end
+    document = Document.find( params[:id] )
+    # respond_to do |format|
+#       format.json { render json: @document }
+#     end
+    send_data document.pdf_data
   end
   
   def destroy

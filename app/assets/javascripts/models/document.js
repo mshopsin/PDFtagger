@@ -10,5 +10,17 @@ PT.Models.Document = Backbone.RelationalModel.extend({
 	keyDestination: "tag_ids"
 
 
-	}]
+	}],
+	
+	getBlobURL: function(callback) {
+		console.log("get pdf");
+		$.get("/documents/" + this.id,
+		function(data){
+			console.log(data);
+			var blob = new Blob([data], {"type":'application/pdf'});
+			//var blobURL = URL.createObjectURL(blob);
+			callback(data);
+		}).fail(function() { alert("error"); });
+	}
+	
 });

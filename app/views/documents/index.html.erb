@@ -31,8 +31,7 @@ $(function(){
 	
 	function shipOff(event) {
 	    var result = event.target.result;
-	    var fileName = $pdfInput[0].files[0].name; //Should be 'picture.jpg'
-		console.log(result);
+	    var fileName = $pdfInput[0].files[0].name;
 		$.post(
 			'/documents.json',
 			 {
