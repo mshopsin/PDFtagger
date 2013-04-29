@@ -7,7 +7,7 @@ PT.Collections.Tags = Backbone.Collection.extend({
 			if(id == "") return this;
  
 			return _(this.filter(function(data) {
-			  	return (data.document_id == id);
+			  	return (data.get('document_id') == id);
 			}));
 		}
 	

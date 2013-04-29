@@ -7,7 +7,7 @@ PT.Overlay.Tag = (function() {
 	  this.model = model;
   }
   
-  my.setupOverlay = function($reader,$start){
+  my.setupOverlay = function($reader,$start, optionsModel){
 	  	  var that = this;
 		  var dialogContentText = $("<p>Please Enter the task you want completed</p>"); 
 		  var $selection = $('<div id="Selection" class="ui-widget-content" ></div>');
@@ -15,6 +15,28 @@ PT.Overlay.Tag = (function() {
 		  $selection.append($buttonRow);
 		  $selection.draggable();
 		  $selection.resizable();
+		  
+		  if(typeof optionsModel != 'undefined') {
+			  $selection.model = optionsModel;
+			  console.log(optionsModel);
+			  console.log( $selection.model.get("y_1") );
+
+			  console.log( $selection.model.get("x_1") );
+			  var width = $selection.model.get("x_2") - $selection.model.get("x_1");
+			  var height = $selection.model.get("y_2") - $selection.model.get("y_1");
+			  $selection.css({
+			      "position":"absolute", 
+			      "top": $selection.model.get("y_1") + "px",
+			      "left": $selection.model.get("x_1") + "px",
+				  "width": width + "px",
+				  "height": height + "px"
+			  });
+			  
+		  } else {
+	  		  $selection.css({top: '10px',
+		  					  left: '10px'});
+		  }
+		  
 		  //close selection button
 		  var $closeSelectionButton = $('<button class="close-button selection-buttons"></button>');
 		  $closeSelectionButton.button({ icons: { primary: "ui-icon-circle-close"} });
@@ -57,33 +79,40 @@ PT.Overlay.Tag = (function() {
 			  var tag = $selection.model;
 			  var taskText = $taskInputEl.val();
 			  tag.set({ task : taskText });
-			  console.log(taskText);
-			  console.log($selection.model.get("task"));
 			  tag.save();
 			  
 			  $( this ).dialog( "close" );
 		   } } ] });
 		   console.log($selection.model.task);
 	  	 
-		 	//  $taskInputEl.resizable( 'disable' );
-		  //	if($diag.find('.inputTaskTextArea').size() == 0 ){
 	  		 	$diag.append($taskInputEl);
 				//}
 		  });
-	      $selection.draggable({containment: "window"});
-	  	  $selection.resizable();
-		  
-		  // var options = {
-  // 			  "my": "top left",
-  // 		  	  "at": "top left",
-  // 			  "of": '.reader-container'
-  // 		  };
-  // 		  $selection.position(options);
-  // 	
+	      $selection.draggable({
+			  containment: "window",
+			  stop: function() {
+				    var tag = $selection.model;
+			  		tag.set({ x_1: $selection.position().left });
+			  		tag.set({ x_2: $selection.position().left + $selection.width() });
+			  		tag.set({ y_1: $selection.position().top });
+			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
+			        tag.save();  
+					console.log($selection);
 	
+			        }});
+	  	  $selection.resizable();
+		  $selection.resize(
+			   function() {
+				    var tag = $selection.model;
+			  		tag.set({ x_1: $selection.position().left });
+			  		tag.set({ x_2: $selection.position().left + $selection.width() });
+			  		tag.set({ y_1: $selection.position().top });
+			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
+			        tag.save();  
+			        });
+					
   
-  		  $selection.css({top: '10px',
-	  					  left: '10px'});
+
 		  $start.append($selection);
 	     
 		 

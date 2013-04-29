@@ -12,9 +12,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		"documents": "listDocuments",
 		"documents/:id": "showDocument",
 		"tags": "listTags",
-		"tags/:id": "tagsByDoc",
-		//figure out how to use two ids
-		"tags/:id/posts/:id": "postsForTag"
+		"tags/:id": "getTag"
 	},
 	
 	listDocuments: function(){
@@ -26,7 +24,6 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	},
 	
 	showDocument: function(id) {
-		console.log("open dang you");
 		var document = this.documents.get(id);
 		var readerView = new PT.Views.DocumentReaderView({
 			model: document
@@ -34,14 +31,23 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		var tagsView = new PT.Views.DocumentTagsView({
 			collection: PT.Store.Tags
 		});
+		tagsView.initialize(id);
 		
 		this.$reader.html(readerView.render().$el);
-		this.$tags.html(tagsView.render(id).$el);
+		this.$tags.html(tagsView.render().$el);
 		
 	},
 	
 	redirectToDocuments: function() {
 		Backbone.history.navigate('#/documents')
+	},
+	
+	getTag: function(id) {
+		var tag = PT.Store.Tags.get(id);
+		var tagFactory = PT.Overlay.Tag;
+		var $start  = $('#tag-listing');
+		var tagObj = tagFactory.setupOverlay(this.$reader,$start,tag);
+		
 	}
 	
 });
