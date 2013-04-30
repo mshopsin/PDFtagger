@@ -26,6 +26,9 @@ class TagsController < ApplicationController
   def show
   end
   
-  def destory
+  def destroy
+    tag = Tag.find(params[:id])
+    tag.destroy
+    render json: {status: "ok"}
   end
 end

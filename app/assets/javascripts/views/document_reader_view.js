@@ -1,6 +1,7 @@
 PT.Views.DocumentReaderView = Backbone.View.extend({
 	events: {
-		"click #set-selection": "createTag"
+		"click #set-selection": "createTag",
+		"click #destroy-document": "destroyDocument"
 	},
 	render: function() {
 		var rendered = JST["documents/reader"]({
@@ -14,6 +15,12 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		
 		this.$el.html(rendered);
 		this.$el.find(".reader-container").append($frameView);
+		return this;
+	},
+	
+	destroyDocument: function(){
+		this.model.destroy();
+		this.$el.html("");
 		return this;
 	},
 	
