@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   
   def create
     post = Post.new(params[:post])
-    post.owner_id = current_user.id
+    post.author_id = current_user.id
     if post.save!
       render :json => post.to_json
     else
@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   end
   
   def show
+    post = Post.find(params[:id])
+    render json: post.to_json
   end
   
   def destory

@@ -1,5 +1,7 @@
 PT.Views.DocumentTagsView = Backbone.View.extend({
-
+	events: {
+		
+	},
 	initialize: function(id){
 		this.id = id;
 		
@@ -17,4 +19,6 @@ PT.Views.DocumentTagsView = Backbone.View.extend({
 	   this.$el.html(rendered);
 	   return this;
 	}
+	
+	
 });

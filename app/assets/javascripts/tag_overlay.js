@@ -17,14 +17,37 @@ PT.Overlay.Tag = (function() {
 		  
 		  var tag = $selection.model;
 		  var taskText = $taskInputEl.val();
-		  tag.set({ task : taskText });
-		  tag.save();
 		  
+		  if(tag.get('task') == "untitled") {
+		  	tag.set({ task : taskText });
+		  	tag.save();
+	  	  } else {
+			  console.log(tag);
+			  tag.addPost(taskText);
+	  	  }
+	      
 		  $( this ).dialog( "close" );
 	   } } ] });
 	   $('.ui-dialog-buttonpane').append($taskInputEl);
-  		 	//$diag.append($taskInputEl);
+  		 	$diag.html(my.showPost($selection.model));
 	  };
+  
+ my.showPost = function(tag) {
+	 var $replies = $('<div></div>');
+	 var $description = $('<dl class="dl-horizontal"></dl>');
+	 var postList = tag.getPosts();
+	 for ( var i = 0; i < postList.length; i++ ) {
+		 $leftSide = $('<dt></dt>');
+		 $leftSide.text(postList[i].get('author_id'));
+		 $rightSide = $('<dd></dd>');
+		 $rightSide.text(postList[i].get('response'));
+		 $description.append($leftSide);
+		 $description.append($rightSide);
+	 }
+	 $replies.append($description);
+	 
+	 return $replies;
+  }
   
   my.setupOverlay = function($reader,$start, optionsModel){
 	  	  var that = this;
@@ -91,7 +114,6 @@ PT.Overlay.Tag = (function() {
 	   		  	$tagAnchor.append($diag);
 	   		  	my.setupDialog( $diag, $selection);
 	  	  });
-	  // 
 	      $selection.draggable({
 			  containment: "window",
 			  stop: function() {
@@ -101,8 +123,6 @@ PT.Overlay.Tag = (function() {
 			  		tag.set({ y_1: $selection.position().top });
 			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
 			        tag.save();  
-					console.log($selection);
-	
 			        }});
 	  	  $selection.resizable();
 		  $selection.resize(
@@ -114,21 +134,9 @@ PT.Overlay.Tag = (function() {
 			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
 			        tag.save();  
 			        });
-					
-  
-					console.log("add me");
 		  $start.append($selection);
-	     
-		 
 		  return $selection;
 	  };
-	  
-  
-	
-	  
-	
-	
-	
 	  //todo return tag
 	return my;
 })();
