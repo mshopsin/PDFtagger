@@ -10,4 +10,10 @@ PT.Models.Tag = Backbone.RelationalModel.extend({
 	keyDestination: "post_ids"
 	
 	}]
+	
+	//add posts
+	
+	
+	//get posts
+	
 });

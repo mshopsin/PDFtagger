@@ -7,6 +7,25 @@ PT.Overlay.Tag = (function() {
 	  this.model = model;
   }
   
+  my.setupDialog = function($diag, $selection) {
+	  $taskInputEl = $('<textarea class="inputTaskTextArea" type="text" name="task[text]" >' + $selection.model.get("task") + '</textarea>');
+	  
+	  var myTitle = ($selection.model.get("task") === "untitled") ? "Enter the Associated Task For this Section" : $selection.model.get("task");
+	  
+      $diag.dialog({modal:true, width: 800,height:400, title: myTitle,
+	   buttons: [ { text: "Ok", click: function() { 
+		  
+		  var tag = $selection.model;
+		  var taskText = $taskInputEl.val();
+		  tag.set({ task : taskText });
+		  tag.save();
+		  
+		  $( this ).dialog( "close" );
+	   } } ] });
+	   $('.ui-dialog-buttonpane').append($taskInputEl);
+  		 	//$diag.append($taskInputEl);
+	  };
+  
   my.setupOverlay = function($reader,$start, optionsModel){
 	  	  var that = this;
 		  var dialogContentText = $("<p>Please Enter the task you want completed</p>"); 
@@ -33,7 +52,7 @@ PT.Overlay.Tag = (function() {
 		  } else {
 	  		  $selection.css({top: '10px',
 		  					  left: '10px'});
-		  }
+		  };
 		  
 		  //close selection button
 		  var $closeSelectionButton = $('<button class="close-button selection-buttons"></button>');
@@ -62,30 +81,17 @@ PT.Overlay.Tag = (function() {
 				locked = false;
 			  }
 		  });
-		  //comment button
-		  var $commentButton = $('<button class="comment-button selection-buttons"></button>');
-		  $commentButton.button({ icons: {primary: "ui-icon-comment" } });
-		  $buttonRow.append($commentButton);
-		  $commentButton.click(function(){
-		  var $tagAnchor = $(".tag-anchor");
-		  var $diag = $('<div class="anchorTag"></div>');
-		  $tagAnchor.append($diag);
-		  $taskInputEl = $('<textarea class="inputTaskTextArea" type="text" name="task[text]" >' + $selection.model.get("task") + '</textarea>');
-	      $diag.dialog({modal:true, width: 800,height:400, title: "Enter the Associated Task For this Section",
-		   buttons: [ { text: "Ok", click: function() { 
-			  
-			  var tag = $selection.model;
-			  var taskText = $taskInputEl.val();
-			  tag.set({ task : taskText });
-			  tag.save();
-			  
-			  $( this ).dialog( "close" );
-		   } } ] });
-		   console.log($selection.model.task);
-	  	 
-	  		 	$diag.append($taskInputEl);
-				//}
-		  });
+		   //comment button
+	   		  var $commentButton = $('<button class="comment-button selection-buttons"></button>');
+	   		  $commentButton.button({ icons: {primary: "ui-icon-comment" } });
+	   		  $buttonRow.append($commentButton);
+	   		  $commentButton.click(function(){
+	   		  var $tagAnchor = $(".tag-anchor");
+	   		  var $diag = $('<div class="anchorTag"></div>');
+	   		  	$tagAnchor.append($diag);
+	   		  	my.setupDialog( $diag, $selection);
+	  	  });
+	  // 
 	      $selection.draggable({
 			  containment: "window",
 			  stop: function() {
@@ -110,12 +116,19 @@ PT.Overlay.Tag = (function() {
 			        });
 					
   
-
+					console.log("add me");
 		  $start.append($selection);
 	     
 		 
 		  return $selection;
-	  }
+	  };
+	  
+  
+	
+	  
+	
+	
+	
 	  //todo return tag
 	return my;
 })();
