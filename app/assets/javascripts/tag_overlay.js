@@ -104,6 +104,19 @@ PT.Overlay.Tag = (function() {
 				locked = false;
 			  }
 		  });
+		  
+		  var $trashSelectionButton = $('<button class="trash-button selection-buttons"></button>');
+		  $trashSelectionButton.button({ icons: { primary: "ui-icon-trash" }, text: false });
+		  $buttonRow.append($trashSelectionButton);
+		  $trashSelectionButton.click(function(){
+			  if(typeof optionsModel != 'undefined') {
+				 optionsModel.destroy();
+			  }
+				 
+				 $selection.remove();
+		  });
+		  
+		  
 		   //comment button
 	   		  var $commentButton = $('<button class="comment-button selection-buttons"></button>');
 	   		  $commentButton.button({ icons: {primary: "ui-icon-comment" } });

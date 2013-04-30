@@ -1,8 +1,15 @@
 <div class="start-selection">
-<a href="#" id="set-selection">Add Selection</a>
+	<table class="table reader-bar">
+	<tr>
+	<td><h4>Reader</h4></td>
+	<td><button id="set-selection" class="btn" >Add Selection <i class="icon-resize-full" ></i></button></td>
+	<td><button href="#" class="btn" >Remove Document<i class="icon-remove-circle"></i></button></td>
+	</tr>
+	</table>
+	
 </div>
+
 <div class="reader-container">
 <%= document.escape("pdf_title") %>
 </div>
 <div class="tag-anchor"></div>
-

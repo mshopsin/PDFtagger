@@ -1,7 +1,5 @@
-<ul>
+<ul class="highlight-list" >
 <% documents.each(function(document){ %>
-  <li>
-    <a href='#/documents/<%= document.id %>'><%= document.escape('title') %></a>
-  </li>
+  <li class="highlight-list" ><a href='#/documents/<%= document.id %>'><%= document.escape('title') %></a></li>
 <% }) %>
 </ul>

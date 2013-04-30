@@ -1,6 +1,5 @@
 PT.Models.Tag = Backbone.RelationalModel.extend({
 	urlRoot: "/tags",
-	
 	relations: [
 	{
 	type: Backbone.HasMany,
@@ -56,10 +55,4 @@ PT.Models.Tag = Backbone.RelationalModel.extend({
 		};
 		return listPosts;
 	}
-	
-	
-	
-	
-	//get posts
-	
 });

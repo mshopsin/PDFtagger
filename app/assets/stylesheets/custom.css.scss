@@ -127,5 +127,63 @@ button {
 	overflow:hidden;
 }
 
+.tag-box {
+	position: fixed;
+}
+ 
+.doc-box {
+	position: fixed;
+	width: 200px;
+}
 
+ 
+.highlight-list ul {
+  list-style-type: none;
+  list-style:none;
+  margin: 0;
+  padding: 0;
+}
+ 
+.highlight-list li {
+  font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+  list-style:none;
+}
+ 
+.highlight-list li:last-child {
+  border: none;
+}
+ 
+.highlight-list li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 200px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.highlight-list li a:hover {
+  font-size: 20px;
+  background: #f6f6f6;
+}
 
+.start-selection {
+	position: fixed;
+	top: 0px;
+	height: 55px;
+}
+
+.selection-label {
+	margin-top: 500 50%;
+}
+
+.reader-bar {
+	background: #F2DCE5;
+	opacity: 0.7;
+
+}

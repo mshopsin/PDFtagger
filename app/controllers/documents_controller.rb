@@ -28,7 +28,11 @@ class DocumentsController < ApplicationController
     send_data document.pdf_data
   end
   
-  def destroy
+  def destory
+    document = Document.find(params[:id])
+    document.destroy
+    render json: {status: "ok"}
   end
+ 
   
 end
