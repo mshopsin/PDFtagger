@@ -4,8 +4,6 @@ gem 'rails', '3.2.13'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'oauth2' 
-gem 'nifty-generators' #Just to create a basic layout
 
 gem 'ejs'
 gem 'bootstrap-sass'
