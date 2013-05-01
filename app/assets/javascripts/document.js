@@ -10,7 +10,6 @@ window.PT = {
 	initialize: function($docs, $reader, $tags, docsJSON) {
 		var documents = new PT.Collections.Documents(docsJSON, {parse: true});
 		documents.fetch();
-		console.log(documents);
 		PT.Store.Documents = documents;
 		PT.Store.Tags = new PT.Collections.Tags();
 		PT.Store.Tags.fetch();

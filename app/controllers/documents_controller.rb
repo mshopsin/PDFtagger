@@ -12,11 +12,12 @@ class DocumentsController < ApplicationController
   end
   
   def create
-    p params[:document]
     @document = Document.new( params[:document] )
     @document.owner_id = current_user.id  
     if @document.save
-      format.json { render json: @document }
+      render json: @document.to_json(include: [:title, :id])
+    else
+      render json: @document.errors, status: 422
     end
   end
   

@@ -16,6 +16,8 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require jquery.iframe-transport.js
+//= require jquery.fileupload.js
 //= require backbone-relational
 //= require document
 //= require_tree ./models
