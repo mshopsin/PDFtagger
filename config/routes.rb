@@ -6,5 +6,5 @@ BackendDeviseTest::Application.routes.draw do
   resources :documents
   resources :tags
   resources :posts
-  
+  resources :users
 end
