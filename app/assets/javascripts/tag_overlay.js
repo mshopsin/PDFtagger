@@ -72,10 +72,7 @@ PT.Overlay.Tag = (function() {
 				  "height": height + "px"
 			  });
 			  
-		  } else {
-	  		  $selection.css({top: '10px',
-		  					  left: '10px'});
-		  };
+		  }
 		  
 		  //close selection button
 		  var $closeSelectionButton = $('<button class="close-button selection-buttons"></button>');
@@ -84,7 +81,7 @@ PT.Overlay.Tag = (function() {
 		  //event handler
 		  $closeSelectionButton.click(function(){
 			  //Todo handle removing from set
-				 $selection.remove();
+				 $selection.hide();
 		  });
 		  //lock selection button
 		  var locked = false;
@@ -147,7 +144,16 @@ PT.Overlay.Tag = (function() {
 			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
 			        tag.save();  
 			        });
-		  $start.append($selection);
+		  if(typeof optionsModel == 'undefined'){
+			  $selection.css({
+			      "position":"absolute", 
+			      "top":10});
+		  }	
+		  	$reader.append($selection);//existing tag
+		  // } else {
+ // 		  	$start.append($selection);//new tag
+ // 		  }
+		  
 		  return $selection;
 	  };
 	  //todo return tag

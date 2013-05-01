@@ -46,8 +46,14 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		var tag = PT.Store.Tags.get(id);
 		var tagFactory = PT.Overlay.Tag;
 		var $start  = $('#tag-listing');
-		var tagObj = tagFactory.setupOverlay(this.$reader,$start,tag);
-		
+		if(id in PT.Store.Widgets){
+		  var tagObj = PT.Store.Widgets[id];
+		  tagObj.show();
+		} else {
+   		  var tagObj = tagFactory.setupOverlay(this.$reader,$start,tag);
+		  PT.Store.Widgets[id] = tagObj;
+		}
+			Backbone.history.navigate('#/');
 	}
-	
+
 });
