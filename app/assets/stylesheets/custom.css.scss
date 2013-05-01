@@ -13,6 +13,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  	background: yellow;
 }
 #container {
     width: inherit;
@@ -188,5 +189,10 @@ button {
 
 }
 
-
+.devise-auth {
+	position: relative;
+	margin-top: 100px;
+	width: 250px;
+	
+}
 

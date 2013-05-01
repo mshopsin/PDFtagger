@@ -18,12 +18,8 @@ ActiveRecord::Schema.define(:version => 20130428181914) do
     t.text     "preview"
     t.string   "location"
     t.integer  "owner_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "pdf_file_name"
-    t.string   "pdf_content_type"
-    t.integer  "pdf_file_size"
-    t.datetime "pdf_updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.binary   "pdf_data"
   end
 

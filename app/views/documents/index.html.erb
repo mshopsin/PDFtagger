@@ -7,7 +7,7 @@ $(function(){
 	var $response = $('#response');
 	var formData = false;
 
-	var docs = <%= Document.all.to_json.html_safe %>; 
+	var docs = <%= Document.first.to_json.html_safe %>; 
 	
 	window.PT.initialize($('#doc-list'), $('#pdf-reader'), $('#tag-listing'), docs);
 
