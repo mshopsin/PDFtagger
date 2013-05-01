@@ -1,5 +1,5 @@
 BackendDeviseTest::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root :to => "documents#index"
   
@@ -7,5 +7,4 @@ BackendDeviseTest::Application.routes.draw do
   resources :tags
   resources :posts
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 end
