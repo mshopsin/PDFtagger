@@ -35,7 +35,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		
 		this.$reader.html(readerView.render().$el);
 		this.$tags.html(tagsView.render().$el);
-		
+		this.listDocuments(); // for reload
 	},
 	
 	redirectToDocuments: function() {
