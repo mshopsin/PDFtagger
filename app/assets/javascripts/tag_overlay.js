@@ -74,8 +74,8 @@ PT.Overlay.Tag = (function() {
 			  
 		  }
 		  
-		  //close selection button
-		  var $closeSelectionButton = $('<button class="close-button selection-buttons"></button>');
+		  //close selection button 
+		  var $closeSelectionButton = $('<button class="close-button selection-buttons"><i class="icon-remove-circle" ></i></button>');
 		  $closeSelectionButton.button({ icons: { primary: "ui-icon-circle-close"} });
 		  $buttonRow.append($closeSelectionButton);
 		  //event handler
@@ -86,24 +86,24 @@ PT.Overlay.Tag = (function() {
 		  //lock selection button
 		  var locked = false;
 		  var $lockSelectionButton = $('<button class="lock-button selection-buttons"></button>');
-		  $lockSelectionButton.button({ icons: {primary: "ui-icon-locked" }, text: false });
+		  $lockSelectionButton.html('<i class="icon-lock" ></i>');
 		  $buttonRow.append($lockSelectionButton);
 		  $lockSelectionButton.click(function(){
 			  if(!locked){
-			  	$lockSelectionButton.button({ icons: {primary: "ui-icon-unlocked" } });
+			  	$lockSelectionButton.html('<i class="icon-move" ></i>');//button({ icons: {primary: "ui-icon-unlocked" } });
 				$selection.draggable( 'disable' );
 				$selection.resizable( 'disable' );
 				locked = true;
 			  } else {
-			  	$lockSelectionButton.button({ icons: {primary: "ui-icon-locked" } });
+			  	$lockSelectionButton.html('<i class="icon-lock" ></i>');
 				$selection.draggable( 'enable' );
 				$selection.resizable( 'enable' );
 				locked = false;
 			  }
 		  });
 		  
-		  var $trashSelectionButton = $('<button class="trash-button selection-buttons"></button>');
-		  $trashSelectionButton.button({ icons: { primary: "ui-icon-trash" }, text: false });
+		  var $trashSelectionButton = $('<button class="trash-button selection-buttons"><i class="icon-trash" ></i></button>');
+		  $trashSelectionButton.button({});
 		  $buttonRow.append($trashSelectionButton);
 		  $trashSelectionButton.click(function(){
 			  if(typeof optionsModel != 'undefined') {
@@ -115,8 +115,8 @@ PT.Overlay.Tag = (function() {
 		  
 		  
 		   //comment button
-	   		  var $commentButton = $('<button class="comment-button selection-buttons"></button>');
-	   		  $commentButton.button({ icons: {primary: "ui-icon-comment" } });
+	   		  var $commentButton = $('<button class="comment-button selection-buttons"><i class="icon-comment" ></i></button>');
+	   		  $commentButton.button({});
 	   		  $buttonRow.append($commentButton);
 	   		  $commentButton.click(function(){
 	   		  var $tagAnchor = $(".tag-anchor");
