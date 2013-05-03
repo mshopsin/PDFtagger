@@ -1,7 +1,7 @@
 <ul class="highlight-list" >
 <% documents.each(function(document){ %>
   <li class="highlight-list" ><a href='#/documents/<%= document.id %>'><%= document.escape('title') %></a></li>
-<% }) %>
+<% }); %>
 </ul>
 		
 		<input type="file" name="document[pdf]" id="pdf-location" value="upload pdf" target="upload_frame" ><br>
