@@ -9,6 +9,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	
 	routes: {
 		"": "redirectToDocuments",
+		"#_=_": "redirectToDocuments",
 		"documents": "listDocuments",
 		"documents/:id": "showDocument",
 		"tags": "listTags",

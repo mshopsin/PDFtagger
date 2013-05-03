@@ -15,6 +15,8 @@ window.PT = {
 		PT.Store.Tags.fetch();
 		PT.Store.Posts = new PT.Collections.Posts();
 		PT.Store.Posts.fetch();
+		PT.Store.Users = new PT.Collections.Users();
+		PT.Store.Users.fetch();
 		PT.Store.Widgets = {};
 		new PT.Routers.DocumentRouter($docs, $reader, $tags, documents);
 		Backbone.history.start();

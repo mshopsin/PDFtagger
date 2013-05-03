@@ -38,7 +38,9 @@ PT.Overlay.Tag = (function() {
 	 var postList = tag.getPosts();
 	 for ( var i = 0; i < postList.length; i++ ) {
 		 $leftSide = $('<dt></dt>');
-		 $leftSide.text(postList[i].get('author_id'));
+		 var authorID = postList[i].get('author_id');
+		 var author_name = PT.Store.Users.where({'id': authorID})[0].get('email');
+		 $leftSide.text(author_name);
 		 $rightSide = $('<dd></dd>');
 		 $rightSide.text(postList[i].get('response'));
 		 $description.append($leftSide);
