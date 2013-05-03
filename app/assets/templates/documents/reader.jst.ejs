@@ -1,7 +1,7 @@
 <div class="start-selection">
 	<table class="table reader-bar">
 	<tr>
-	<td><h4>Reader</h4></td>
+	<td><h4><%= document.escape("title") %></h4></td>
 	<td><button id="set-selection" class="btn" >Add Selection </button></td>
 	<td><button id="destroy-document" class="btn" >Remove Document</button></td>
 	</tr>
@@ -10,6 +10,6 @@
 </div>
 
 <div class="reader-container">
-<%= document.escape("pdf_title") %>
+
 </div>
 <div class="tag-anchor"></div>

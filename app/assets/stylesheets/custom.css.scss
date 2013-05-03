@@ -115,7 +115,7 @@ button {
   	   }
 	   
 .reader-content {
-	padding-top:20px;
+	padding-top:0px;
 }
 
 .nav-toolbar{
@@ -193,6 +193,14 @@ button {
 	position: relative;
 	margin-top: 100px;
 	width: 250px;
+	-moz-border-radius-bottomright: 50px;
+	border-radius: 150px;
 	
 }
+.well {
+	border-radius: 15px;
+}
 
+.reader-title {
+	text-align: right;
+}

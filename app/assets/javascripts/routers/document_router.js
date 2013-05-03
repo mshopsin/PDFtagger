@@ -27,7 +27,8 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	showDocument: function(id) {
 		
 		if(typeof this.documents == 'undefined' || this.documents.length == 0){
-			Backbone.history.navigate('#/documents/' + id);
+			console.log("navigating");
+			Backbone.history.navigate("");
 		}
 		
 		var document = this.documents.get(id);

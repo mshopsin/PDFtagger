@@ -78,7 +78,6 @@ PT.Overlay.Tag = (function() {
 		  
 		  //close selection button 
 		  var $closeSelectionButton = $('<button class="close-button selection-buttons"><i class="icon-remove-circle" ></i></button>');
-		  $closeSelectionButton.button({ icons: { primary: "ui-icon-circle-close"} });
 		  $buttonRow.append($closeSelectionButton);
 		  //event handler
 		  $closeSelectionButton.click(function(){
@@ -92,7 +91,7 @@ PT.Overlay.Tag = (function() {
 		  $buttonRow.append($lockSelectionButton);
 		  $lockSelectionButton.click(function(){
 			  if(!locked){
-			  	$lockSelectionButton.html('<i class="icon-move" ></i>');//button({ icons: {primary: "ui-icon-unlocked" } });
+			  	$lockSelectionButton.html('<i class="icon-move" ></i>');
 				$selection.draggable( 'disable' );
 				$selection.resizable( 'disable' );
 				locked = true;
