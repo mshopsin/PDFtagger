@@ -25,8 +25,14 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	},
 	
 	showDocument: function(id) {
-		console.log("show doc");
+		
+		if(typeof this.documents == 'undefined' || this.documents.length == 0){
+			Backbone.history.navigate('#/documents/' + id);
+		}
+		
 		var document = this.documents.get(id);
+		
+		
 		var readerView = new PT.Views.DocumentReaderView({
 			model: document
 		});
@@ -42,7 +48,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	},
 	
 	redirectToDocuments: function() {
-		Backbone.history.navigate('#/documents')
+		Backbone.history.navigate('#/documents');
 	},
 	
 	getTag: function(id) {
