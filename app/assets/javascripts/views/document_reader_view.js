@@ -16,7 +16,6 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		this.$el.find(".reader-container").append($frameView);
 		return this;
 	},
-	
 	destroyDocument: function(){
 		this.model.destroy();
 		this.$el.html("");
