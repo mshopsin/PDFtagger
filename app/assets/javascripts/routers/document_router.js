@@ -25,6 +25,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	},
 	
 	showDocument: function(id) {
+		console.log("show doc");
 		var document = this.documents.get(id);
 		var readerView = new PT.Views.DocumentReaderView({
 			model: document
@@ -34,11 +35,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		});
 		tagsView.initialize(id);
 		
-		this.$reader.html(readerView.render().$el).promise().done(function() {
-			
-			console.log("done1");
-			
-		});
+		this.$reader.html(readerView.render().$el);
 		
 		this.$tags.html(tagsView.render().$el);
 		this.listDocuments(); // for reload
