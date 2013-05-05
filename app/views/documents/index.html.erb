@@ -1,17 +1,11 @@
 <script type="text/javascript">
 $(function(){ 
-	
-	
-	
 	var $pdfInput = $("#pdf-location");
 	var $response = $('#response');
 	var formData = false;
-
 	var docs = <%= Document.first.to_json.html_safe %>; 
-	
 	window.PT.initialize($('#doc-list'), $('#pdf-reader'), $('#tag-listing'), docs);
 
-	
 	function showUploadedItem(title) {
 		var $list = $("pdf-list");
 		var $li = $('<li></li>');
@@ -29,43 +23,26 @@ $(function(){
     </ul>
   </div>
 </div>
-
 <div class="row" id="main-content">
-    <div class="span4">
-	<div class="doc-box">
-	  <h1>Doc List</h1><br>
-		  
-		  <div id='doc-list'></div>
-  	
-	  <br>
-	     <div class="container">
-	
-		
-				
-			<div id="response"></div>
-			<ul id="pdf-list">
-			</ul>
-			
-			
-		</div>
-		
-		
-			
-		
-     </div>
-	  </div>
-  <div class="span12 offset-2">
-
-		 
+    <div class="span2">
+		<div class="doc-box">
+		  <h1>Doc List</h1><br>
+			  <div id='doc-list'></div>
+		  <br>
+		     <div class="container">
+				<div id="response"></div>
+				<ul id="pdf-list">
+				</ul>
+			</div>
+	     </div>
+	 </div>
+  <div class="span4">
 	  <div id="pdf-reader" class="container"></div>
-
-  
   </div>
-  <div class="span2">
+  <div class="span2 offset4">
 	   <div class="tag-box">
 	   <h1>Tags</h1>
 	   <div id="tag-listing" class="highlight-list" ></div>
   	   </div>
   </div>
 </div>
-

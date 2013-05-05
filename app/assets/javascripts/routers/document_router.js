@@ -11,6 +11,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		"": "redirectToDocuments",
 		"_=_": "redirectToDocuments",
 		"documents": "listDocuments",
+		"#documents": "listDocuments",
 		"documents/:id": "showDocument",
 		"tags": "listTags",
 		"tags/:id": "getTag"
@@ -18,6 +19,7 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	
 	listDocuments: function(){
 		var that = this;
+		that.documents.fetch();
 		var view = new PT.Views.DocumentListView({
 			collection: that.documents
 		});
@@ -26,13 +28,13 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	
 	showDocument: function(id) {
 		
-		if(typeof this.documents == 'undefined' || this.documents.length == 0){
+		if(typeof this.documents == 'undefined' || this.documents.length == 0 || typeof this.documents.get(id) == 'undefined' ){
 			console.log("navigating");
-			Backbone.history.navigate("");
+			this.navigate("/documents");
 		}
 		
 		var document = this.documents.get(id);
-		
+		console.log(document);
 		
 		var readerView = new PT.Views.DocumentReaderView({
 			model: document

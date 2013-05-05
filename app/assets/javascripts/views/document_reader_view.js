@@ -7,7 +7,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var rendered = JST["documents/reader"]({
 			document: this.model
 		});
-		var $frameView = $('<iframe id="frame-view" type="application/pdf" width="100%" height="5000px" ></iframe>')
+		var $frameView = $('<iframe id="frame-view" type="application/pdf" width=600px height="5000px" ></iframe>')
 		this.model.getBlobURL( function(blob){
 			$frameView.attr('src',blob);
 		});
