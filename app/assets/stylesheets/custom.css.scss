@@ -98,12 +98,12 @@ button {
 	padding-left: 10px;
 }
 
-#Selection { width: 150px;
-  	 	  height: 150px;
-		 padding: 0.5em;
+.Selection { 
+	
 		 opacity: 0.8;
     border-width: 4px;
-    border-style: dashed; }
+    border-style: dashed;
+    position: relative; }
 
 .selection-buttons {
   	  width: 50px;
@@ -119,6 +119,7 @@ button {
 }
 .reader-container {
 	padding-top : 40px;
+	positon: fixed;
 }
 
 .nav-toolbar{
@@ -144,8 +145,6 @@ button {
 .highlight-list ul {
   list-style-type: none;
   list-style:none;
-  margin: 0;
-  padding: 0;
   width: 150px;
 }
  

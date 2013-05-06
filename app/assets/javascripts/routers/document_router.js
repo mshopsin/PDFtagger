@@ -48,6 +48,8 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		
 		this.$tags.html(tagsView.render().$el);
 		this.listDocuments(); // for reload
+		
+		PT.Store.Widgets = {};
 	},
 	
 	redirectToDocuments: function() {
@@ -57,14 +59,19 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	getTag: function(id) {
 		var tag = PT.Store.Tags.get(id);
 		var tagFactory = PT.Overlay.Tag;
-		var $start  = $('#tag-listing');
+		//var $start  = $('#pdf-reader');
+		var $start = $('.reader-container');
+		var tagObj = new Object();
 		if(id in PT.Store.Widgets){
-		  var tagObj = PT.Store.Widgets[id];
+		  tagObj = PT.Store.Widgets[id];
+		  console.log
 		  tagObj.show();
 		} else {
-   		  var tagObj = tagFactory.setupOverlay(this.$reader,$start,tag);
+   		  tagObj = tagFactory.setupOverlay(this.$reader,$start,tag);
 		  PT.Store.Widgets[id] = tagObj;
+		  tagObj.show();
 		}
+		
 			Backbone.history.navigate('#/');
 	}
 

@@ -7,7 +7,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var rendered = JST["documents/reader"]({
 			document: this.model
 		});
-		var $frameView = $('<iframe id="frame-view" type="application/pdf" width=600px height="5000px" ></iframe>')
+		var $frameView = $('<iframe id="frame-view" type="application/pdf" width=800px height="5000px" ></iframe>')
 		this.model.getBlobURL( function(blob){
 			$frameView.attr('src',blob);
 		});
@@ -27,9 +27,9 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var tagObj = this.makeTagParams();
 		var tag = {};
 		tag.x_1 = tagObj.offset().left;
-		tag.x_2 = tagObj.offset().left + tagObj.width();
+		tag.x_2 =  tagObj.width();
 		tag.y_1 = tagObj.offset().top;
-		tag.y_2 = tagObj.offset().top + tagObj.height();
+		tag.y_2 =  tagObj.height();
 		tag.task = "untitled";
 		tag.document_id = this.model.id;
 		var tagM = new PT.Models.Tag(tag);
@@ -44,7 +44,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var $start  = $('#frame-view');
 		var $reader = $('.reader-container');
 		var tagFactory = PT.Overlay.Tag;
-		var tagObj = tagFactory.setupOverlay($reader,$start);
+		var tagObj = tagFactory.setupOverlay($start,$start);
 		
 		return tagObj;
 	}

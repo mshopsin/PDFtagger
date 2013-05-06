@@ -53,27 +53,30 @@ PT.Overlay.Tag = (function() {
   
   my.setupOverlay = function($reader,$start, optionsModel){
 	  	  var that = this;
-		  var dialogContentText = $("<p>Please Enter the task you want completed</p>"); 
-		  var $selection = $('<div id="Selection" class="ui-widget-content" ></div>');
+		  
+		  var dialogContentText = $("<p>Please Enter the task you want completed</p>");
+		  var $moveBox =  $('<div></div>');
+		  $moveBox.css({"position":"relative"});
+		  var $selection = $('<div class="Selection ui-widget-content" ></div>');
+		  $moveBox.append($selection);
 		  var $buttonRow = $('<div class="button-row"></div>');
 		  $selection.append($buttonRow);
 		  
 		  if(typeof optionsModel != 'undefined') {
 			  $selection.model = optionsModel;
-			  console.log(optionsModel);
-			  console.log( $selection.model.get("y_1") );
-
-			  console.log( $selection.model.get("x_1") );
-			  var width = $selection.model.get("x_2") - $selection.model.get("x_1");
-			  var height = $selection.model.get("y_2") - $selection.model.get("y_1");
+			  console.log($selection.model);
+			  var width = $selection.model.get("x_2");
+			  var height = $selection.model.get("y_2");
 			  $selection.css({
-			      "position":"absolute", 
-			      "top": $selection.model.get("y_1") + "px",
-			      "left": $selection.model.get("x_1") + "px",
+			       "position":"relative", 
 				  "width": width + "px",
-				  "height": height + "px"
+				  "height": height + "px", 
+				  "top": $selection.model.get("y_1") + "px",
+				  "left": $selection.model.get("x_1") + "px"
 			  });
-			  
+			  $moveBox.css({
+		      "position":"relative"
+		  	  });
 		  }
 		  
 		  //close selection button 
@@ -82,7 +85,7 @@ PT.Overlay.Tag = (function() {
 		  //event handler
 		  $closeSelectionButton.click(function(){
 			  //Todo handle removing from set
-				 $selection.hide();
+				 $moveBox.hide();
 		  });
 		  //lock selection button
 		  var locked = false;
@@ -128,34 +131,33 @@ PT.Overlay.Tag = (function() {
 	      $selection.draggable({
 			  containment: "window",
 			  stop: function() {
-				    var tag = $selection.model;
-			  		tag.set({ x_1: $selection.position().left });
-			  		tag.set({ x_2: $selection.position().left + $selection.width() });
-			  		tag.set({ y_1: $selection.position().top });
-			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
-			        tag.save();  
+				    that.tag = $selection.model;
+			  		that.tag.set({ x_1: $selection.position().left });
+			  		that.tag.set({ y_1:  $selection.position().top });
+			        that.tag.save();  
 			        }});
 	  	  $selection.resizable();
-		  $selection.resize(
-			   function() {
-				    var tag = $selection.model;
-			  		tag.set({ x_1: $selection.position().left });
-			  		tag.set({ x_2: $selection.position().left + $selection.width() });
-			  		tag.set({ y_1: $selection.position().top });
-			  		tag.set({ y_2: $selection.position().top  + $selection.height() });
-			        tag.save();  
-			        });
+		  $selection.resize(function() {
+       			    $selection.css({"position":"relative"});
+					
+				    that.tag = $selection.model;
+			  		that.tag.set({ x_2: $selection.width() });
+			  		that.tag.set({ y_2: $selection.height() });
+			        that.tag.save();  
+				});
+					
 		  if(typeof optionsModel == 'undefined'){
-			  $selection.css({
-			      "position":"absolute", 
-			      "top":10});
+			  $selection.css({ "position":"absolute",
+			  				   "top":"0px",
+						       "left":"0px"});
+ 			  $moveBox.css({ "position":"relative",
+ 			  				   "top":"0px",
+ 						       "left":"0px"});
 		  }	
-		  	$reader.append($selection);//existing tag
-		  // } else {
- // 		  	$start.append($selection);//new tag
- // 		  }
-		  
-		  return $selection;
+  		  	$start.append($moveBox);//new tag
+ // 
+
+		  return $moveBox;
 	  };
 	  //todo return tag
 	return my;
