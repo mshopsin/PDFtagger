@@ -68,7 +68,7 @@ PT.Overlay.Tag = (function() {
 		  if(typeof $selection.model.get("y_1") == 'undefined') {
 			   console.log("default");
 			
-			  $selection.css({ "position":"relative"});
+			  $selection.css({ "position":"absolute"});
 			  $selection.css({"width":  "200px"});
 			  $selection.css({"height": "100px"}); 
 			  $selection.css({"top": "-5000px"});
@@ -78,7 +78,7 @@ PT.Overlay.Tag = (function() {
 			  var width = $selection.model.get("x_2");
 			  var height = $selection.model.get("y_2");
 			  $selection.css({
-			       "position":"relative", 
+			       "position":"absolute", 
 				  "width": width + "px",
 				  "height": height + "px", 
 				  "top": $selection.model.get("y_1") + "px",
