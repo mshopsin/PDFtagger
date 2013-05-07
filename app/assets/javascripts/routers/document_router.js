@@ -64,11 +64,11 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 		if(id in PT.Store.Widgets){
 		  tagObj = PT.Store.Widgets[id];
 		  console.log
-		  tagObj.show();
+		  tagObj.css({"opacity":"0.7"});;
 		} else {
    		  tagObj = tagFactory.setupOverlay(this.$reader,$start,tag);
 		  PT.Store.Widgets[id] = tagObj;
-		  tagObj.show();
+		  tagObj.css({"opacity":"0.7"});;
 		}
 		
 			Backbone.history.navigate('#/');

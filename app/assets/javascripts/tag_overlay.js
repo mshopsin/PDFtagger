@@ -56,7 +56,8 @@ PT.Overlay.Tag = (function() {
 		  
 		  var dialogContentText = $("<p>Please Enter the task you want completed</p>");
 		  var $moveBox =  $('<div></div>');
-		  $moveBox.css({"position":"relative"});
+		  $moveBox.css({"position":"relative",
+	  					"min-height":"100px"});
 		  var $selection = $('<div class="Selection ui-widget-content" ></div>');
 		  $moveBox.append($selection);
 		  var $buttonRow = $('<div class="button-row"></div>');
@@ -85,16 +86,17 @@ PT.Overlay.Tag = (function() {
 			  $selection.css({"height": "100px"}); 
 			  $selection.css({"top": "-5000px"});
 			  $selection.css({"left": "100px"});
-			  debugger
+			  
 		  }
 		  
 		  //close selection button 
 		  var $closeSelectionButton = $('<button class="close-button selection-buttons"><i class="icon-remove-circle" ></i></button>');
 		  $buttonRow.append($closeSelectionButton);
 		  //event handler
-		  $closeSelectionButton.click(function(){
+		  $closeSelectionButton.click(function( event ){
+			  event.preventDefault();
 			  //Todo handle removing from set
-				 $moveBox.hide();
+				 $moveBox.css({"opacity":"0"});
 		  });
 		  //lock selection button
 		  var locked = false;
@@ -138,7 +140,7 @@ PT.Overlay.Tag = (function() {
 	   		  	my.setupDialog( $diag, $selection);
 	  	  });
 	      $selection.draggable({
-			  containment: "window",
+			  containment: $start,
 			  stop: function() {
 				    that.tag = $selection.model;
 			  		that.tag.set({ x_1: $selection.position().left });
