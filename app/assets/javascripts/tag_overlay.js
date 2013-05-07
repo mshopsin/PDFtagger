@@ -62,6 +62,10 @@ PT.Overlay.Tag = (function() {
 		  var $buttonRow = $('<div class="button-row"></div>');
 		  $selection.append($buttonRow);
 		  
+		  $moveBox.css({
+	      "position":"relative"
+	  	  });
+		 
 		  if(typeof optionsModel != 'undefined') {
 			  $selection.model = optionsModel;
 			  console.log($selection.model);
@@ -74,9 +78,14 @@ PT.Overlay.Tag = (function() {
 				  "top": $selection.model.get("y_1") + "px",
 				  "left": $selection.model.get("x_1") + "px"
 			  });
-			  $moveBox.css({
-		      "position":"relative"
-		  	  });
+		  } else {
+			   console.log("default");
+			  $selection.css({ "position":"relative"});
+			  $selection.css({"width":  "200px"});
+			  $selection.css({"height": "100px"}); 
+			  $selection.css({"top": "-5000px"});
+			  $selection.css({"left": "100px"});
+			  debugger
 		  }
 		  
 		  //close selection button 
@@ -146,14 +155,16 @@ PT.Overlay.Tag = (function() {
 			        that.tag.save();  
 				});
 					
-		  if(typeof optionsModel == 'undefined'){
-			  $selection.css({ "position":"absolute",
-			  				   "top":"0px",
-						       "left":"0px"});
- 			  $moveBox.css({ "position":"relative",
- 			  				   "top":"0px",
- 						       "left":"0px"});
-		  }	
+		  // if(typeof optionsModel == 'undefined'){
+		  // 			  $selection.css({ "position":"relative",
+		  // 			  				   "top":"-5000px",
+		  // 						       "left":"0px",
+		  // 						   		"width":"200px",
+		  // 								"height":"200px"});
+		  //  			  $moveBox.css({ "position":"relative",
+		  //  			  				   "top":"0px",
+		  //  						       "left":"0px"});
+		  // }	
   		  	$start.append($moveBox);//new tag
  // 
 

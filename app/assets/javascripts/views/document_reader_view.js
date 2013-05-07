@@ -36,7 +36,12 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		tagObj.model = tagM;
 		tagM.save();
  		PT.Store.Tags.add(tagM);
-		this.render();
+		var $start = $('.reader-container');
+		var tagObj =  PT.Overlay.Tag.setupOverlay($start,$start,tagM);
+		PT.Store.Widgets[tagM.id] = tagObj;
+		//this.render();
+		
+		return tagObj;
 		
 	},
 	
@@ -44,7 +49,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var $start  = $('#frame-view');
 		var $reader = $('.reader-container');
 		var tagFactory = PT.Overlay.Tag;
-		var tagObj = tagFactory.setupOverlay($start,$start);
+		var tagObj = tagFactory.setupOverlay($reader,$reader);
 		
 		return tagObj;
 	}

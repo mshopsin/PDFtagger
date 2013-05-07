@@ -59,7 +59,6 @@ PT.Routers.DocumentRouter = Backbone.Router.extend({
 	getTag: function(id) {
 		var tag = PT.Store.Tags.get(id);
 		var tagFactory = PT.Overlay.Tag;
-		//var $start  = $('#pdf-reader');
 		var $start = $('.reader-container');
 		var tagObj = new Object();
 		if(id in PT.Store.Widgets){
