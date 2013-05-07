@@ -53,22 +53,27 @@ PT.Overlay.Tag = (function() {
   
   my.setupOverlay = function($reader,$start, optionsModel){
 	  	  var that = this;
-		  
 		  var dialogContentText = $("<p>Please Enter the task you want completed</p>");
 		  var $moveBox =  $('<div></div>');
-		  $moveBox.css({"position":"relative",
-	  					"min-height":"100px"});
 		  var $selection = $('<div class="Selection ui-widget-content" ></div>');
-		  $moveBox.append($selection);
 		  var $buttonRow = $('<div class="button-row"></div>');
-		  $selection.append($buttonRow);
 		  
-		  $moveBox.css({
-	      "position":"relative"
-	  	  });
-		 
-		  if(typeof optionsModel != 'undefined') {
-			  $selection.model = optionsModel;
+		  $selection.model = optionsModel;
+		  $selection.append($buttonRow);
+		  $moveBox.css({"position":"relative"});
+		  $moveBox.append($selection);
+		  //debugger
+		  $moveBox.css({ "position":"relative" });
+		  //debugger
+		  if(typeof $selection.model.get("y_1") == 'undefined') {
+			   console.log("default");
+			
+			  $selection.css({ "position":"relative"});
+			  $selection.css({"width":  "200px"});
+			  $selection.css({"height": "100px"}); 
+			  $selection.css({"top": "-5000px"});
+			  $selection.css({"left": "100px"});
+		  } else {
 			  console.log($selection.model);
 			  var width = $selection.model.get("x_2");
 			  var height = $selection.model.get("y_2");
@@ -79,13 +84,6 @@ PT.Overlay.Tag = (function() {
 				  "top": $selection.model.get("y_1") + "px",
 				  "left": $selection.model.get("x_1") + "px"
 			  });
-		  } else {
-			   console.log("default");
-			  $selection.css({ "position":"relative"});
-			  $selection.css({"width":  "200px"});
-			  $selection.css({"height": "100px"}); 
-			  $selection.css({"top": "-5000px"});
-			  $selection.css({"left": "100px"});
 			  
 		  }
 		  
@@ -156,20 +154,8 @@ PT.Overlay.Tag = (function() {
 			  		that.tag.set({ y_2: $selection.height() });
 			        that.tag.save();  
 				});
-					
-		  // if(typeof optionsModel == 'undefined'){
-		  // 			  $selection.css({ "position":"relative",
-		  // 			  				   "top":"-5000px",
-		  // 						       "left":"0px",
-		  // 						   		"width":"200px",
-		  // 								"height":"200px"});
-		  //  			  $moveBox.css({ "position":"relative",
-		  //  			  				   "top":"0px",
-		  //  						       "left":"0px"});
-		  // }	
+		
   		  	$start.append($moveBox);//new tag
- // 
-
 		  return $moveBox;
 	  };
 	  //todo return tag
