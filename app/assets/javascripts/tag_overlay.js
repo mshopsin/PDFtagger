@@ -8,7 +8,7 @@ PT.Overlay.Tag = (function() {
   }
   
   my.setupDialog = function($diag, $selection) {
-	  $taskInputEl = $('<textarea class="inputTaskTextArea" type="text" name="task[text]" >' + $selection.model.get("task") + '</textarea>');
+	  $taskInputEl = $('<textarea class="inputTaskTextArea" type="text" name="task[text]" ></textarea>');
 	  
 	  var myTitle = ($selection.model.get("task") === "untitled") ? "Enter the Associated Task For this Section" : $selection.model.get("task");
 	  
