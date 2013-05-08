@@ -4,8 +4,26 @@
 			<td><h4><%= document.escape("title") %></h4></td>
 			<td><button id="set-selection" class="btn" >Add Selection </button></td>
 			<td><button id="destroy-document" class="btn" >Remove Document</button></td>
+			<td><a href="#myModal" role="button" class="btn" data-toggle="modal">Document Users</a></td>
 		</tr>
 	</table>	
 </div>
 <div class="reader-container"></div>
 <div class="tag-anchor"></div>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Select Group</h3>
+
+	<form>
+	<% users.each(function(user){ %>
+	  <label class="checkbox">
+		<input type="checkbox"><%= user.escape("email") %></input>
+	  </label>
+	<% }) %>
+	</form>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+
+</div>

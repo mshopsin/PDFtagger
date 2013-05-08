@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501190247) do
+ActiveRecord::Schema.define(:version => 20130507215128) do
+
+  create_table "document_groups", :force => true do |t|
+    t.integer  "document_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "document_groups", ["document_id"], :name => "index_document_groups_on_document_id"
+  add_index "document_groups", ["user_id"], :name => "index_document_groups_on_user_id"
 
   create_table "documents", :force => true do |t|
     t.string   "title"
