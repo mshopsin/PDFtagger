@@ -7,6 +7,7 @@ gem 'omniauth-facebook'
 
 gem 'ejs'
 gem 'bootstrap-sass'
+gem 'json'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

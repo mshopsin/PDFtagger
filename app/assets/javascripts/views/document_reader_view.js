@@ -1,12 +1,14 @@
 PT.Views.DocumentReaderView = Backbone.View.extend({
 	events: {
 		"click #set-selection": "createTag",
-		"click #destroy-document": "destroyDocument"
+		"click #destroy-document": "destroyDocument",
+		"click #submitBtn": "setDocGrp"
 	},
 	render: function() {
 		var rendered = JST["documents/reader"]({
 			document: this.model,
-			users: PT.Store.Users
+			users: PT.Store.Users,
+			docgrp : PT.Store.Document_Groups
 		});
 		var $frameView = $('<iframe id="frame-view" type="application/pdf" width=800px height="5000px" ></iframe>')
 		this.model.getBlobURL( function(blob){
@@ -54,6 +56,24 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var tagObj = tagFactory.setupOverlay($reader,$reader,tag);
 		
 		return tagObj;
+	},
+	
+	setDocGrp: function(){
+		
+		var url = "/document_groups"; // the script where you handle the form input.
+
+		    $.ajax({
+		           type: "POST",
+		           url: url,
+		           data: $('#docGroup').serialize() , 
+		           success: function(data)
+		           {
+		               alert(data); 
+		           }
+		         });
+
+		    return false; 
+		
 	}
 	
 });

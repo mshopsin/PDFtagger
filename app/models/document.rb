@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  attr_accessible :location, :preview, :title, :pdf, :pdf_data
+  attr_accessible :location, :preview, :title, :pdf, :pdf_data, :owner_id
   
   belongs_to :owner, class_name: "User"
   has_many :tags, dependent: :destroy

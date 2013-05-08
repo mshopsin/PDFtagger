@@ -7,4 +7,5 @@ BackendDeviseTest::Application.routes.draw do
   resources :posts
   resources :users
   resources :user_data
+  resources :document_groups
 end
