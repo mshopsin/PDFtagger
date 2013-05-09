@@ -24,16 +24,18 @@ class DocumentGroupsController < ApplicationController
    
   end
   
+  #adds new user and creates control group
   def new
     puts params
-    new_email = params[:email]
-    doc_id    = params[:document_id]
+    new_email = params[:document_group][:email]
+    doc_id    = params[:document_group][:document_id]
     puts new_email
     puts doc_id
     render json: { status: "ok" }
-    User._invite({email: new_email}, current_user ) #do |u|
-       # DocumentGroup.create!({document_id: doc_id, user_id: u.id })
- #       render json: { status: "ok" }
+    User.invite!({:email => new_email}, current_user )
+    new_user = User.find_by_email(new_email)
+    DocumentGroup.create!({document_id: doc_id, user_id: new_user.id })
+    render json: { status: "ok" }
  #       puts "sent!"
  #     end
      
