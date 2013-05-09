@@ -20,6 +20,8 @@ BackendDeviseTest::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
   
+  config.action_mailer.perform_deliveries = true
+  
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
