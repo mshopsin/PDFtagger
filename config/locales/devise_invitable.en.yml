@@ -15,4 +15,4 @@ en:
     mailer:
       invitation_instructions:
         subject: 'Invitation instructions'
-		user_subject: 'You have an invitation to PDF-tagger'
+
