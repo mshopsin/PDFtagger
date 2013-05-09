@@ -82,18 +82,14 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		var that = this;
 		    $.ajax({
 		           type: "GET",
+				   dataType : 'json',
 		           url: url,
-		           data: $('#formEmail').serialize() , 
-		           success: function(data)
+		           data: $('#formEmail').serialize() }).always(
+		   function(data)
 		           {
 		               $('#emailField').val('');
 					   that.emailAlert("Email Sent");
-		           },
-				    error: function(data)
-					{
-						that.emailAlert("An Error has occurred, no email was sent :(");
-					}
-		         });
+		           });
 
 		    return false; 
 	},
@@ -105,6 +101,10 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		$alertBox.append($alertDismiss);
 		$alertBox.append(msg);
 		$msgBox.html($alertBox);
+		
+		$alertBox.fadeOut(2000, function() {
+		    $alertBox.remove();
+		  });
 	}
 	
 	
