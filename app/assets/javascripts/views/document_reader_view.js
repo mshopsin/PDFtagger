@@ -68,7 +68,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		           data: $('#docGroup').serialize() , 
 		           success: function(data)
 		           {
-		               alert(data); 
+		               //changes saved to document_group
 		           }
 		         });
 

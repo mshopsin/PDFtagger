@@ -4,7 +4,9 @@
 			<td><h4><%= document.escape("title") %></h4></td>
 			<td><button id="set-selection" class="btn" >Add Selection </button></td>
 			<td><button id="destroy-document" class="btn" >Remove Document</button></td>
-			<td><a href="#myModal" role="button" class="btn" data-toggle="modal">Document Users</a></td>
+			<% if(window.currentUserID == document.get('owner_id') ) { %>
+			<td><a href='#myModal' role='button' class='btn' data-toggle='modal'>Document Users</a></td>
+			<% } %>
 		</tr>
 	</table>	
 </div>
@@ -16,10 +18,12 @@
 			<tr>
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">Select Group</h3>
+		<%= document.keys() %>
 		</tr>
 		<form id="docGroup">
 		<% users.each(function(user){ %>
 			<tr height="20">
+				
 		  <label class="checkbox" style="height: 20px">
 			<input type="checkbox"  name="document_group[document_id][<%= document.id %>][user_id][<%= user.id %>][]" <%= (docgrp.where({ document_id: document.id, user_id: user.id }).length > 0  || user.id == document.get('owner_id') ) ? "checked" : ""  %> "  <%= (user.id == document.get('owner_id')) ? "disabled" :"" %>  ><%= user.escape("email") %></input>
 		  </label>

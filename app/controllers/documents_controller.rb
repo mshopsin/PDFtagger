@@ -3,11 +3,13 @@ class DocumentsController < ApplicationController
   respond_to :json
   
   def index
-    @documents = Document.all
+  
+    @documents = Document.find(DocumentGroup.find_all_by_user_id(current_user.id).map { |doc| doc.document_id })
+    
     respond_to do |format|
       
       format.html { render :index }
-      format.json { render :json => @documents.to_json(:include => [:tags], only: [:title, :id] ) }
+      format.json { render :json => @documents.as_json(only: [:tags, :id, :title, :owner_id] ) }
     end
   end
   
@@ -15,7 +17,8 @@ class DocumentsController < ApplicationController
     @document = Document.new( params[:document] )
     @document.owner_id = current_user.id  
     if @document.save
-      render json: @document.to_json(include: [:title, :id])
+      DocumentGroup.create({document_id: @document.id, user_id: @document.owner_id })
+      render json: @document.as_json(only: [:title, :id])
     else
       render json: @document.errors, status: 422
     end
@@ -31,6 +34,7 @@ class DocumentsController < ApplicationController
   
   def destroy
     document = Document.find(params[:id])
+    DocumentGroup.delete_all(["(document_id = ?)",document.id])
     document.destroy
     render json: {status: "ok"}
   end

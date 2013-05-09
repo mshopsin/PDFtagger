@@ -1,5 +1,7 @@
 <script type="text/javascript">
 $(function(){ 
+	window.currentUserID = <%= current_user.id %>;
+	
 	var $pdfInput = $("#pdf-location");
 	var $response = $('#response');
 	var formData = false;
@@ -20,6 +22,7 @@ $(function(){
     <a class="brand" href="#">PDFtagger</a>
     <ul class="nav">
       <li class="active"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+	  <li class="active"><a href="#"><%= current_user.email %></a></li>
     </ul>
   </div>
 </div>
