@@ -8,6 +8,7 @@ gem 'omniauth-facebook'
 gem 'ejs'
 gem 'bootstrap-sass'
 gem 'json'
+gem 'letter_opener' , :group => :development
 gem 'devise_invitable', '~> 1.1.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
