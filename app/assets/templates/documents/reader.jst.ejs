@@ -2,10 +2,10 @@
 	<table class="table reader-bar">
 		<tr>
 			<td><h4><%= document.escape("title") %></h4></td>
-			<td><button id="set-selection" class="btn" >Add Selection </button></td>
-			<td><button id="destroy-document" class="btn" >Remove Document</button></td>
 			<% if(window.currentUserID == document.get('owner_id') ) { %>
-			<td><a href='#myModal' role='button' class='btn' data-toggle='modal'>Document Users</a></td>
+				<td><button id="set-selection" class="btn" >Add Selection </button></td>
+				<td><button id="destroy-document" class="btn" >Remove Document</button></td>
+				<td><a href='#myModal' role='button' class='btn' data-toggle='modal'>Document Users</a></td>
 			<% } %>
 		</tr>
 	</table>	
