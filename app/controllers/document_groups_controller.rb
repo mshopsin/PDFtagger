@@ -20,7 +20,7 @@ class DocumentGroupsController < ApplicationController
       document_group = DocumentGroup.create({document_id: doc_id, user_id: user })
     end
     
-     render json: { status: "ok" }
+     render :json => "we good!", :status => :ok
    
   end
   
