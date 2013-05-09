@@ -79,7 +79,7 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 	
 	sendInvite: function(){
 		var url = "/document_groups/new"; // the script where you handle the form input.
-
+		var that = this;
 		    $.ajax({
 		           type: "GET",
 		           url: url,
@@ -87,10 +87,26 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 		           success: function(data)
 		           {
 		               $('#emailField').val('');
-		           }
+					   that.emailAlert("Email Sent");
+		           },
+				    error: function(data)
+					{
+						that.emailAlert("An Error has occurred, no email was sent :(");
+					}
 		         });
 
 		    return false; 
+	},
+	
+	emailAlert: function(msg){
+		var $msgBox = $('#emailAlert');
+		var $alertBox = $("<div class='alert fade in'></div>");
+		var $alertDismiss = $('<button type="button" class="close" data-dismiss="alert">x</button>');
+		$alertBox.append($alertDismiss);
+		$alertBox.append(msg);
+		$msgBox.html($alertBox);
 	}
+	
+	
 	
 });
