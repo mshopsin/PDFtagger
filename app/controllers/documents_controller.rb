@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
     @document.owner_id = current_user.id  
     if @document.save
       DocumentGroup.create({document_id: @document.id, user_id: @document.owner_id })
-      render json: @document.as_json(only: [:title, :id])
+      render json: @document.as_json(only: [:title, :id, :owner_id])
     else
       render json: @document.errors, status: 422
     end
