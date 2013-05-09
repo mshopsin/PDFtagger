@@ -24,6 +24,18 @@ class DocumentGroupsController < ApplicationController
    
   end
   
+  def new
+    puts params
+    new_email = params[:email]
+    doc_id    = params[:document_id]
+    puts new_email
+    puts doc_id
+    render json: { status: "ok" }
+     User.invite!(email: new_email) do |u|
+       DocumentGroup.create!({document_id: doc_id, user_id: u.id })
+     end
+  end
+  
   def destroy
     document_group = DocumentGroup.find(params[:id])
     document_group.destroy

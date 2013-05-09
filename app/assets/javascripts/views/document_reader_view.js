@@ -2,7 +2,8 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 	events: {
 		"click #set-selection": "createTag",
 		"click #destroy-document": "destroyDocument",
-		"click #submitBtn": "setDocGrp"
+		"click #submitBtn": "setDocGrp",
+		"click #inviteEmail": "sendInvite"
 	},
 	render: function() {
 		var rendered = JST["documents/reader"]({
@@ -74,6 +75,22 @@ PT.Views.DocumentReaderView = Backbone.View.extend({
 
 		    return false; 
 		
+	},
+	
+	sendInvite: function(){
+		var url = "/document_groups/new"; // the script where you handle the form input.
+
+		    $.ajax({
+		           type: "GET",
+		           url: url,
+		           data: $('#formEmail').serialize() , 
+		           success: function(data)
+		           {
+		               $('#emailField').val('');
+		           }
+		         });
+
+		    return false; 
 	}
 	
 });
