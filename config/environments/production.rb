@@ -30,7 +30,7 @@ BackendDeviseTest::Application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => EMV['SENDGRID_DOMAIN']
+    :domain         => ENV['SENDGRID_DOMAIN']
   }
   
 
