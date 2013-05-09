@@ -31,7 +31,7 @@ class DocumentGroupsController < ApplicationController
     puts new_email
     puts doc_id
     render json: { status: "ok" }
-    User.invite!({email: new_email}, current_user ) #do |u|
+    User.invite!({email: new_email}, current_user ) do |u|
        DocumentGroup.create!({document_id: doc_id, user_id: u.id })
        render json: { status: "ok" }
        puts "sent!"
